@@ -7,7 +7,7 @@ function Card({ imgUrl, title, description }) {
   };
 
   return (
-    <div className="max-w-xs min-w-[320px] min-h-[180px] max-h-[180px] relative">
+    <div className="card max-w-xs min-w-[320px] min-h-[180px] max-h-[180px] relative overflow-hidden">
       <Backdrop />
       <img
         alt="image"
