@@ -1,5 +1,4 @@
-import { useNavigate } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import noImage from "../../assets/images/noImage.png";
 import { articleSelected } from "../../store/newsSlice";
@@ -17,6 +16,8 @@ function Card(props) {
   const selectOneArticle = () => {
     // when user clicks on article it's data will be stored in redux
     dispatch(articleSelected(props));
+    // store it in local storage also for backup in case of refresh
+    localStorage.setItem("articleData", JSON.stringify(props));
   };
 
   return (
