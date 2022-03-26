@@ -20,13 +20,13 @@ const slice = createSlice({
       news.searchedHeadlines = payload;
       news.resultsLoading = false;
     },
-    articleRecieved: (news, { payload }) => {
+    articleSelected: (news, { payload }) => {
       news.article = payload;
       news.resultsLoading = false;
     },
   },
 });
 
-export const { topHeadlinesRecieved, searchedHeadlinesRecieved, articleRecieved, loadingStarted } = slice.actions;
+export const { topHeadlinesRecieved, searchedHeadlinesRecieved, articleSelected, loadingStarted } = slice.actions;
 
 export default slice.reducer;

@@ -16,7 +16,19 @@ function Main() {
 
   const showCards = (data) => {
     return data.map((article, index) => {
-      return <Card key={article?.publishedAt} imgUrl={article?.urlToImage} title={article?.title} description={article?.description} />;
+      return (
+        <Card
+          // pass all data to card.
+          key={article?.publishedAt}
+          imgUrl={article?.urlToImage}
+          title={article?.title}
+          description={article?.description}
+          publishedAt={article?.publishedAt}
+          source={article?.source}
+          author={article?.author}
+          content={article?.content}
+        />
+      );
     });
   };
 
