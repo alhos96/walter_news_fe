@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Route, Routes } from "react-router-dom";
 
-import { Header, Main, Spinner } from "./components";
+import { Header, Main, Spinner, Article } from "./components";
 import { handleApiCall, config } from "./helpers";
 import { topHeadlinesRecieved } from "./store/newsSlice";
 
@@ -30,7 +31,10 @@ function App() {
     <div className="App relative">
       <Header />
 
-      {resultsLoading ? <Spinner /> : <Main />}
+      <Routes>
+        <Route path="/" element={resultsLoading ? <Spinner /> : <Main />} />
+        <Route path="/article" element={resultsLoading ? <Spinner /> : <Article />} />
+      </Routes>
     </div>
   );
 }
