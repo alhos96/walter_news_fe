@@ -20,7 +20,7 @@ function Card(props) {
   };
 
   return (
-    <div className="card max-w-xs min-w-[320px] min-h-[180px] max-h-[180px] relative overflow-hidden">
+    <div className="card min-w-[320px] min-h-[180px] max-h-[180px] relative overflow-hidden">
       <Backdrop selectOneArticle={selectOneArticle /* pass function to button */} />
 
       <img

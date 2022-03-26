@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
 
 import "./main.css";
@@ -33,8 +32,10 @@ function Main() {
   };
 
   return (
-    <div className="main bg-transparent absolute top-28">
-      {showCards((showTopHeadlines && topHeadlines) || (showSearchedHeadlines && searchedHeadlines))}
+    <div className="main absolute top-36 lg:left-[50%] max-w-[1000px] lg:translate-x-[-50%] bg-transparent sm:w-full">
+      <div className="main-content grid md:gap-1 lg:gap-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {showCards((showTopHeadlines && topHeadlines) || (showSearchedHeadlines && searchedHeadlines))}
+      </div>
 
       {showTopHeadlines && <Button handler={() => console.log("jabuka")} text={"Load More"} />}
     </div>

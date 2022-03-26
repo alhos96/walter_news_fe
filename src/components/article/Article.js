@@ -13,21 +13,21 @@ function Article() {
   };
 
   return (
-    <div className="article absolute top-28 p-4">
+    <div className="article absolute top-36 p-4 sm:w-full lg:left-[50%] max-w-[800px] xl:pl-20 xl:pr-20 lg:translate-x-[-50%]">
       <h1 className="text-xl leading-6">{article.title}</h1>
 
       <p className="text-xs text-slate-500 mt-1">
         {article?.author || "N.N."} • {article?.publishedAt}
       </p>
 
+      <p className="text-xs text-slate-500 mt-1 block">Source: {article?.source.name || "Unknown"}</p>
+
       <img
         alt={article.title}
-        className="saturate-100 brightness-[60%] min-w-full object-cover  min-h-[180px] mt-3"
+        className="w-full max-w-[700px] object-cover m-auto min-h-[180px] mt-3"
         src={article?.imgUrl || noImage /* Undefined url won't throw error. In that case show default image right upon render.*/}
         onError={(e) => showDefaultImage(e)}
       />
-
-      <p className="text-xs text-slate-500 mt-1">Source: {article?.source.name || "Unknown"}</p>
 
       <p className="text-sm mt-5 text-slate-600">{article?.description}</p>
 
