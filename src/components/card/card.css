@@ -1,0 +1,9 @@
+.card-backdrop {
+  background-color: rgba(53, 53, 53, 0.493);
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.card-backdrop:hover {
+  opacity: 1;
+}

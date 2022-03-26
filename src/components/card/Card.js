@@ -1,4 +1,5 @@
 import noImage from "../../assets/images/noImage.png";
+import Backdrop from "./Backdrop";
 
 function Card({ imgUrl, title, description }) {
   const showDefaultImage = (e) => {
@@ -7,9 +8,10 @@ function Card({ imgUrl, title, description }) {
 
   return (
     <div className="max-w-xs min-w-[320px] min-h-[180px] max-h-[180px] relative">
+      <Backdrop />
       <img
         alt="image"
-        className="brightness-75 min-w-full object-contain"
+        className="saturate-100 brightness-[60%] min-w-full object-cover  min-h-[180px]"
         src={imgUrl || noImage /* Undefined url won't throw error. In that case show default image right upon render.*/}
         onError={(e) => showDefaultImage(e)}
       />
