@@ -29,7 +29,7 @@ function Article() {
   if (!articleToDisplay) return <Spinner />;
 
   return (
-    <div className="article absolute top-36 p-4 sm:w-full lg:left-[50%] max-w-[800px] xl:pl-20 xl:pr-20 lg:translate-x-[-50%]">
+    <div className="article absolute top-44 p-4 sm:w-full lg:left-[50%] max-w-[800px] xl:pl-20 xl:pr-20 lg:translate-x-[-50%]">
       <h1 className="text-xl leading-6">{articleToDisplay.title}</h1>
 
       <p className="text-xs text-slate-500 mt-1">
