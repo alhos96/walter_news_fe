@@ -40,7 +40,7 @@ function Article() {
 
       <img
         alt={articleToDisplay.title}
-        className="w-full max-w-[700px] object-cover m-auto min-h-[180px] mt-3"
+        className="w-full max-w-[700px] object-cover m-auto min-h-[180px] max-h-[350px] mt-3"
         src={articleToDisplay?.imgUrl || noImage /* Undefined url won't throw error. In that case show default image right upon render.*/}
         onError={(e) => showDefaultImage(e)}
       />
