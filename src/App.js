@@ -13,7 +13,7 @@ function App() {
 
   // global state
   const resultsLoading = useSelector((state) => state.news.resultsLoading);
-  const isUserSearching = useSelector((state) => state.news.searchedHeadlines.length > 0); // check if state contains any elements
+  const searchedHeadlines = useSelector((state) => state.news.searchedHeadlines);
 
   // local state
   const [showAmount, setShowAmount] = useState(20); // amount of articles to ask for
@@ -21,7 +21,7 @@ function App() {
   // sideffects
   useEffect(() => {
     // if there are any elements in search array don't call for top headlines
-    !isUserSearching && handleApiCall(`${endpoints.topHeadlines}&pageSize=${showAmount}`, get, dispatch, topHeadlinesRecieved);
+    !searchedHeadlines.length > 0 && handleApiCall(`${endpoints.topHeadlines}&pageSize=${showAmount}`, get, dispatch, topHeadlinesRecieved);
 
     // show amount is controlled by load more button in main component
   }, [showAmount]);
