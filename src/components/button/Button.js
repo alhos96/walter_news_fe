@@ -1,9 +1,9 @@
 import "./button.css";
 
-function Button({ handler, text }) {
+function Button({ handler, children }) {
   return (
     <div className="w-full text-center p-5">
-      <button onClick={handler}>{text}</button>
+      <button onClick={handler}>{children}</button>
     </div>
   );
 }
