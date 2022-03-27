@@ -15,16 +15,12 @@ function App() {
   const resultsLoading = useSelector((state) => state.news.resultsLoading);
 
   // local state
-  const [showAmount, setShowAmount] = useState(3); // amount of articles to ask for
-
-  // functions
-  const handleLoadMoreClick = () => {
-    setShowAmount((prev) => prev + 3);
-  };
+  const [showAmount, setShowAmount] = useState(20); // amount of articles to ask for
 
   // sideffects
   useEffect(() => {
     handleApiCall(`${endpoints.topHeadlines}&pageSize=${showAmount}`, get, dispatch, topHeadlinesRecieved);
+    // controlled by load more button in main component
   }, [showAmount]);
 
   return (
@@ -32,7 +28,7 @@ function App() {
       <Header />
 
       <Routes>
-        <Route path="/" element={resultsLoading ? <Spinner /> : <Main />} />
+        <Route path="/" element={resultsLoading ? <Spinner /> : <Main showAmount={showAmount} setShowAmount={setShowAmount} />} />
         <Route path="/article" element={resultsLoading ? <Spinner /> : <Article />} />
       </Routes>
     </div>

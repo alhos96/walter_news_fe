@@ -4,14 +4,19 @@ import "./main.css";
 import Card from "../card/Card";
 import Button from "../button/Button";
 
-function Main() {
+function Main({ showAmount, setShowAmount }) {
   // global state
   const topHeadlines = useSelector((state) => state.news.topHeadlines);
   const searchedHeadlines = useSelector((state) => state.news.searchedHeadlines);
 
-  // this value will serve as boolean to render upon
+  // this value will serve as boolean to render certain component upon
   const showTopHeadlines = topHeadlines.length;
   const showSearchedHeadlines = searchedHeadlines.length;
+
+  // functions
+  const handleLoadMoreClick = () => {
+    setShowAmount((prev) => prev + 3);
+  };
 
   const showCards = (data) => {
     return data.map((article, index) => {
@@ -37,7 +42,7 @@ function Main() {
         {showCards((showTopHeadlines && topHeadlines) || (showSearchedHeadlines && searchedHeadlines))}
       </div>
 
-      {showTopHeadlines && <Button handler={() => console.log("jabuka")} text={"Load More"} />}
+      {showTopHeadlines && <Button handler={() => handleLoadMoreClick()} text={"Load More"} />}
     </div>
   );
 }
