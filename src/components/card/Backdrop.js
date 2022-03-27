@@ -18,7 +18,7 @@ function Backdrop({ selectOneArticle }) {
           selectOneArticle(); // store clicked card data in redux
           goToFullArticle();
         }}
-        text={"Read Full Article"}
+        children={"Read Full Article"}
       />
     </div>
   );
