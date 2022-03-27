@@ -40,7 +40,7 @@ function Header() {
             >
               <input placeholder="Search..." className="search-input bg-transparent w-full" type="text" />
 
-              <button className={`search-button absolute right-0 bottom-0 opacity-${buttonOpacity}`}>
+              <button className={`search-button absolute right-0 bottom-0 opacity-${buttonOpacity} px-4 py-1`}>
                 <img src={searchIcon}></img>
               </button>
             </div>
