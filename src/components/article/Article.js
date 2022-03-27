@@ -18,6 +18,7 @@ function Article() {
     e.target.src = noImage; // if url link is broken show default image
   };
 
+  // side effects
   useEffect(() => {
     if (reduxArticle.length > 0 /*empty array will not be falsy*/) {
       setArticleToDisplay(reduxArticle);

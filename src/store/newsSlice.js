@@ -27,9 +27,12 @@ const slice = createSlice({
       news.article = payload;
       news.resultsLoading = false;
     },
+    backToTopHeadlines: (news, data) => {
+      news.searchedHeadlines = []; // emptying searched headlines in redux store will trigger new call for top headlines
+    },
   },
 });
 
-export const { topHeadlinesRecieved, searchedHeadlinesRecieved, articleSelected, loadingStarted } = slice.actions;
+export const { topHeadlinesRecieved, searchedHeadlinesRecieved, articleSelected, loadingStarted, backToTopHeadlines } = slice.actions;
 
 export default slice.reducer;

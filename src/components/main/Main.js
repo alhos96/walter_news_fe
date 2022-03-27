@@ -4,7 +4,7 @@ import "./main.css";
 import Card from "../card/Card";
 import Button from "../button/Button";
 
-function Main({ showAmount, setShowAmount }) {
+function Main({ setShowAmount }) {
   // global state
   const topHeadlines = useSelector((state) => state.news.topHeadlines);
   const searchedHeadlines = useSelector((state) => state.news.searchedHeadlines);

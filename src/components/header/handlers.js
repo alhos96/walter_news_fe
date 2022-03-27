@@ -18,4 +18,10 @@ const handleFocus = (e, setButtonOpacity) => {
   setButtonOpacity(100); // make button animate with border
 };
 
-export { handleBlur, handleChange, handleFocus, handleSubmit };
+const handleBackButtonClick = (dispatch, backToTopHeadlines, loadingStarted, setTopHeadlinesTrigger) => {
+  dispatch(loadingStarted());
+  dispatch(backToTopHeadlines());
+  setTopHeadlinesTrigger((prev) => !prev);
+};
+
+export { handleBlur, handleChange, handleFocus, handleSubmit, handleBackButtonClick };

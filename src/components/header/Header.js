@@ -3,18 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 import "./header.css";
-import logo from "../../assets/images/logo.svg";
-import searchIcon from "../../assets/images/search-icon.svg";
-import filterIcon from "../../assets/images/filter-icon.svg";
-import SlideFromTop from "../animations/SlideFromTop";
-import SlideFromRight from "../animations/SlideFromRight";
-import { handleBlur, handleChange, handleFocus, handleSubmit } from "./handlers";
+import { logo, searchIcon, filterIcon, backIcon } from "../../assets/images";
+import { SlideFromLeft, SlideFromRight, SlideFromTop } from "../animations";
+import { handleBlur, handleChange, handleFocus, handleSubmit, handleBackButtonClick } from "./handlers";
 import { handleApiCall, config } from "../../helpers";
-import { searchedHeadlinesRecieved } from "../../store/newsSlice";
+import { searchedHeadlinesRecieved, backToTopHeadlines, loadingStarted } from "../../store/newsSlice";
 
 const filters = [{ value: "relevancy" }, { value: "popularity" }, { value: "publishedAt" }];
 
-function Header() {
+function Header({ setTopHeadlinesTrigger }) {
   // helpers
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -60,7 +57,7 @@ function Header() {
               onSubmit={(e) => handleSubmit(e, search, navigate)}
             >
               <input
-                className="search-input bg-transparent w-full"
+                className="search-input bg-transparent w-[81%] md:w-[87%] lg:w-[87%]"
                 placeholder="Search..."
                 type="text"
                 onChange={(e) => handleChange(e, setUserInput)}
@@ -74,7 +71,7 @@ function Header() {
 
               {searchedHeadlines.length > 0 && (
                 <>
-                  <SlideFromTop
+                  <SlideFromLeft
                     isVisible={searchedHeadlines.length > 0}
                     children={
                       <>
@@ -83,7 +80,12 @@ function Header() {
                           className={`search-button absolute right-0 bottom-[-27px] opacity-${buttonOpacity} px-[16.5px] py-2`}
                           // toggle filters list
                           onClick={() => setShowFilters((prev) => !prev)}
-                          onBlur={() => setShowFilters(false)}
+                        />
+
+                        <button
+                          children={<img src={backIcon} />}
+                          className={`search-button absolute left-0 bottom-[-28px] opacity-${buttonOpacity} px-[16.5px]`}
+                          onClick={() => handleBackButtonClick(dispatch, backToTopHeadlines, loadingStarted, setTopHeadlinesTrigger)}
                         />
                       </>
                     }

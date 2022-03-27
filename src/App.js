@@ -17,6 +17,7 @@ function App() {
 
   // local state
   const [showAmount, setShowAmount] = useState(20); // amount of articles to ask for
+  const [topHeadlinesTrigger, setTopHeadlinesTrigger] = useState(false); // change state on back to headlines button click
 
   // sideffects
   useEffect(() => {
@@ -24,11 +25,11 @@ function App() {
     !searchedHeadlines.length > 0 && handleApiCall(`${endpoints.topHeadlines}&pageSize=${showAmount}`, get, dispatch, topHeadlinesRecieved);
 
     // show amount is controlled by load more button in main component
-  }, [showAmount]);
+  }, [showAmount, topHeadlinesTrigger]);
 
   return (
     <div className="App relative">
-      <Header />
+      <Header setTopHeadlinesTrigger={setTopHeadlinesTrigger} />
 
       <Routes>
         <Route path="/" element={resultsLoading ? <Spinner /> : <Main showAmount={showAmount} setShowAmount={setShowAmount} />} />
