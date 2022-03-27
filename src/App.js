@@ -13,14 +13,17 @@ function App() {
 
   // global state
   const resultsLoading = useSelector((state) => state.news.resultsLoading);
+  const isUserSearching = useSelector((state) => state.news.searchedHeadlines.length > 0); // check if state contains any elements
 
   // local state
   const [showAmount, setShowAmount] = useState(20); // amount of articles to ask for
 
   // sideffects
   useEffect(() => {
-    handleApiCall(`${endpoints.topHeadlines}&pageSize=${showAmount}`, get, dispatch, topHeadlinesRecieved);
-    // controlled by load more button in main component
+    // if there are any elements in search array don't call for top headlines
+    !isUserSearching && handleApiCall(`${endpoints.topHeadlines}&pageSize=${showAmount}`, get, dispatch, topHeadlinesRecieved);
+
+    // show amount is controlled by load more button in main component
   }, [showAmount]);
 
   return (
@@ -29,6 +32,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={resultsLoading ? <Spinner /> : <Main showAmount={showAmount} setShowAmount={setShowAmount} />} />
+
         <Route path="/article" element={resultsLoading ? <Spinner /> : <Article />} />
       </Routes>
     </div>

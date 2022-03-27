@@ -39,6 +39,7 @@ function Main({ showAmount, setShowAmount }) {
   return (
     <div className="main absolute top-36 lg:left-[50%] max-w-[1000px] lg:translate-x-[-50%] bg-transparent sm:w-full">
       <div className="main-content grid md:gap-1 lg:gap-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {/* if top headlines exist in array in redux show them and vice versa */}
         {showCards((showTopHeadlines && topHeadlines) || (showSearchedHeadlines && searchedHeadlines))}
       </div>
 
