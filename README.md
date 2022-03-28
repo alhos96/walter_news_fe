@@ -5,6 +5,7 @@ The software system being produced is called Walter News. It is application that
 This application is developed in HTML5, CSS3 and React.js with tailwind. I have also used following packages among creat-react-app preloads:
   - axios
   - react-router-dom
+  - react-spring
   - react-redux
   - redux-toolkit
   - luxon
