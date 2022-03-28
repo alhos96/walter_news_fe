@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { DateTime } from "luxon";
 
 import "./article.css";
 import noImage from "../../assets/images/noImage.png";
@@ -25,7 +26,12 @@ function Article() {
     } else {
       setArticleToDisplay(backupArticle); // data pulled from local storage
     }
+    // eslint-disable-next-line
   }, []);
+
+  // format date correctly
+  const publishedAt = DateTime.fromISO(articleToDisplay?.publishedAt);
+  const formatedDate = publishedAt.toLocaleString(DateTime.DATETIME_SHORT);
 
   if (!articleToDisplay) return <Spinner />;
 
@@ -34,7 +40,7 @@ function Article() {
       <h1 className="text-xl leading-6">{articleToDisplay.title}</h1>
 
       <p className="text-xs text-slate-500 mt-1">
-        {articleToDisplay?.author || "N.N."} • {articleToDisplay?.publishedAt}
+        {articleToDisplay?.author || "N.N."} • {formatedDate}
       </p>
 
       <p className="text-xs text-slate-500 mt-1 block">Source: {articleToDisplay?.source.name || "Unknown"}</p>
