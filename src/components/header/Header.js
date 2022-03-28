@@ -87,6 +87,7 @@ function Header({ setTopHeadlinesTrigger }) {
                         <button
                           children={<img alt="back ico" src={backIcon} />}
                           className={`search-button absolute right-0 bottom-[27px] opacity-${buttonOpacity} px-[15px]`}
+                          disabled={userInput.length === 0}
                           onClick={() => handleBackButtonClick(dispatch, backToTopHeadlines, loadingStarted, setTopHeadlinesTrigger)}
                         />
                       </>
