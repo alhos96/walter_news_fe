@@ -39,6 +39,7 @@ function Header({ setTopHeadlinesTrigger }) {
 
   useEffect(() => {
     userInput && search(); // search again on filter change but prevent search on initial render when input is empty
+    // eslint-disable-next-line
   }, [activeFilter]);
 
   return (
@@ -64,7 +65,7 @@ function Header({ setTopHeadlinesTrigger }) {
               />
 
               <button
-                children={<img src={searchIcon} />}
+                children={<img alt="seacrh ico" src={searchIcon} />}
                 className={`search-button absolute right-0 bottom-0 opacity-${buttonOpacity} px-4 py-1`}
                 type="submit"
               />
@@ -77,14 +78,14 @@ function Header({ setTopHeadlinesTrigger }) {
                     children={
                       <>
                         <button
-                          children={<img src={filterIcon} />}
+                          children={<img alt="filter ico" src={filterIcon} />}
                           className={`search-button absolute right-0 bottom-[-27px] opacity-${buttonOpacity} px-[16.5px] py-2`}
                           // toggle filters list
                           onClick={() => setShowFilters((prev) => !prev)}
                         />
 
                         <button
-                          children={<img src={backIcon} />}
+                          children={<img alt="back ico" src={backIcon} />}
                           className={`search-button absolute right-0 bottom-[27px] opacity-${buttonOpacity} px-[15px]`}
                           onClick={() => handleBackButtonClick(dispatch, backToTopHeadlines, loadingStarted, setTopHeadlinesTrigger)}
                         />
