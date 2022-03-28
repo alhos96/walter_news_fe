@@ -5,6 +5,7 @@ import { DateTime } from "luxon";
 import "./article.css";
 import noImage from "../../assets/images/noImage.png";
 import Spinner from "../spinner/Spinner";
+import FadeIn from "../animations/FadeIn";
 
 function Article() {
   // global state
@@ -36,26 +37,33 @@ function Article() {
   if (!articleToDisplay) return <Spinner />;
 
   return (
-    <div className="article absolute top-44 p-4 sm:w-full lg:left-[50%] max-w-[800px] xl:pl-20 xl:pr-20 lg:translate-x-[-50%]">
-      <h1 className="text-xl leading-6">{articleToDisplay.title}</h1>
+    <FadeIn
+      isVisible={true}
+      children={
+        <div className="article absolute top-44 p-4 sm:w-full lg:left-[50%] max-w-[800px] xl:pl-20 xl:pr-20 lg:translate-x-[-50%]">
+          <h1 className="text-xl leading-6">{articleToDisplay.title}</h1>
 
-      <p className="text-xs text-slate-500 mt-1">
-        {articleToDisplay?.author || "N.N."} • {formatedDate}
-      </p>
+          <p className="text-xs text-slate-500 mt-1">
+            {articleToDisplay?.author || "N.N."} • {formatedDate}
+          </p>
 
-      <p className="text-xs text-slate-500 mt-1 block">Source: {articleToDisplay?.source.name || "Unknown"}</p>
+          <p className="text-xs text-slate-500 mt-1 block">Source: {articleToDisplay?.source.name || "Unknown"}</p>
 
-      <img
-        alt={articleToDisplay.title}
-        className="w-full max-w-[700px] object-cover m-auto min-h-[180px] max-h-[350px] mt-3"
-        src={articleToDisplay?.imgUrl || noImage /* Undefined url won't throw error. In that case show default image right upon render.*/}
-        onError={(e) => showDefaultImage(e)}
-      />
+          <img
+            alt={articleToDisplay.title}
+            className="w-full max-w-[700px] object-cover m-auto min-h-[180px] max-h-[350px] mt-3"
+            src={
+              articleToDisplay?.imgUrl || noImage /* Undefined url won't throw error. In that case show default image right upon render.*/
+            }
+            onError={(e) => showDefaultImage(e)}
+          />
 
-      <p className="text-sm mt-5 text-slate-600">{articleToDisplay?.description}</p>
+          <p className="text-sm mt-5 text-slate-600">{articleToDisplay?.description}</p>
 
-      <p className="text-[14px] mt-5">{articleToDisplay.content}</p>
-    </div>
+          <p className="text-[14px] mt-5">{articleToDisplay.content}</p>
+        </div>
+      }
+    />
   );
 }
 
