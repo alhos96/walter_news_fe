@@ -5,7 +5,7 @@ const handleChange = (e, setUserInput) => {
 const handleSubmit = (e, search, navigate) => {
   e.preventDefault();
   search();
-  navigate("/");
+  navigate("/"); // return to main if search was made while on article
 };
 
 const handleBlur = (e, setButtonOpacity) => {
