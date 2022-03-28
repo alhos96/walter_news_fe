@@ -7,7 +7,7 @@ import { logo, searchIcon, filterIcon, backIcon } from "../../assets/images";
 import { SlideFromLeft, SlideFromRight, SlideFromTop } from "../animations";
 import { handleBlur, handleChange, handleFocus, handleSubmit, handleBackButtonClick } from "./handlers";
 import { handleApiCall, config } from "../../helpers";
-import { searchedHeadlinesRecieved, backToTopHeadlines, loadingStarted } from "../../store/newsSlice";
+import { searchedHeadlinesRecieved, backToTopHeadlines, loadingStarted, recievedError } from "../../store/newsSlice";
 
 const filters = [{ value: "relevancy" }, { value: "popularity" }, { value: "date" }];
 
@@ -29,7 +29,7 @@ function Header({ setTopHeadlinesTrigger }) {
 
   // functions
   const search = () => {
-    handleApiCall(`${endpoints.everything}?q=${userInput}&sortBy=${activeFilter}`, get, dispatch, searchedHeadlinesRecieved);
+    handleApiCall(`${endpoints.everything}?q=${userInput}&sortBy=${activeFilter}`, get, dispatch, searchedHeadlinesRecieved, recievedError);
   };
 
   // side effects

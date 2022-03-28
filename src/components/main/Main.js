@@ -3,11 +3,13 @@ import { useSelector } from "react-redux";
 import "./main.css";
 import Card from "../card/Card";
 import Button from "../button/Button";
+import MyError from "../error/MyError";
 
 function Main({ setShowAmount }) {
   // global state
   const topHeadlines = useSelector((state) => state.news.topHeadlines);
   const searchedHeadlines = useSelector((state) => state.news.searchedHeadlines);
+  const errorMessage = useSelector((state) => state.news.errorMessage);
 
   // this value will serve as boolean to render certain component upon
   const showTopHeadlines = topHeadlines.length;
@@ -35,6 +37,8 @@ function Main({ setShowAmount }) {
       );
     });
   };
+
+  if (errorMessage) return <MyError errorMessage={errorMessage} />;
 
   return (
     <div className="main absolute top-44 lg:left-[50%] max-w-[1000px] lg:translate-x-[-50%] bg-transparent sm:w-full">

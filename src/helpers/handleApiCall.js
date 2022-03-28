@@ -2,8 +2,7 @@ import axios from "axios";
 
 import config from "./config";
 
-const handleApiCall = async (url, method, dispatch, onSuccess) => {
-  console.log(url);
+const handleApiCall = async (url, method, dispatch, onSuccess, onError) => {
   let options = {
     baseURL: config.baseUrl,
     method: method,
@@ -12,7 +11,13 @@ const handleApiCall = async (url, method, dispatch, onSuccess) => {
 
   try {
     const res = await axios.request(options);
-    dispatch(onSuccess(res.data.articles));
+    let articlesFound = res.data.articles.length > 0;
+
+    if (articlesFound) {
+      dispatch(onSuccess(res.data.articles));
+    } else {
+      dispatch(onError("No articles found..."));
+    }
   } catch (err) {
     console.log(err);
   }
