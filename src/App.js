@@ -25,6 +25,7 @@ function App() {
     !searchedHeadlines.length > 0 && handleApiCall(`${endpoints.topHeadlines}&pageSize=${showAmount}`, get, dispatch, topHeadlinesRecieved);
 
     // show amount is controlled by load more button in main component
+    // eslint-disable-next-line
   }, [showAmount, topHeadlinesTrigger]);
 
   return (

@@ -36,7 +36,7 @@ function Card(props) {
           {isImageLoading ? <Spinner /> : null}
 
           <img
-            alt="image"
+            alt="card banner"
             className={`saturate-100 brightness-[60%] min-w-full object-cover  min-h-[180px] ${isImageLoading ? "hidden" : ""}`}
             src={props.imgUrl || noImage /* Undefined url won't throw error. In that case show default image right upon render.*/}
             onError={(e) => showDefaultImage(e)}
