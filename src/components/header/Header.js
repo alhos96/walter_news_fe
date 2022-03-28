@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
@@ -15,6 +15,7 @@ function Header({ setTopHeadlinesTrigger }) {
   // helpers
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const searchInput = useRef();
   const { endpoints, get } = config;
 
   // global state
@@ -60,6 +61,7 @@ function Header({ setTopHeadlinesTrigger }) {
               <input
                 className="search-input bg-transparent w-[81%] md:w-[87%] lg:w-[87%]"
                 placeholder="Search..."
+                ref={searchInput}
                 type="text"
                 onChange={(e) => handleChange(e, setUserInput)}
               />
@@ -88,7 +90,16 @@ function Header({ setTopHeadlinesTrigger }) {
                           children={<img alt="back ico" src={backIcon} />}
                           className={`search-button absolute right-0 bottom-[27px] opacity-${buttonOpacity} px-[15px]`}
                           disabled={userInput.length === 0}
-                          onClick={() => handleBackButtonClick(dispatch, backToTopHeadlines, loadingStarted, setTopHeadlinesTrigger)}
+                          onClick={() =>
+                            handleBackButtonClick(
+                              dispatch,
+                              backToTopHeadlines,
+                              loadingStarted,
+                              setTopHeadlinesTrigger,
+                              searchInput,
+                              userInput
+                            )
+                          }
                         />
                       </>
                     }

@@ -18,7 +18,9 @@ const handleFocus = (e, setButtonOpacity) => {
   setButtonOpacity(100); // make button animate with border
 };
 
-const handleBackButtonClick = (dispatch, backToTopHeadlines, loadingStarted, setTopHeadlinesTrigger) => {
+const handleBackButtonClick = (dispatch, backToTopHeadlines, loadingStarted, setTopHeadlinesTrigger, searchInput, userInput) => {
+  searchInput.current.value = ""; // clear input field when exiting search mode
+  userInput = ""; // clear user input controll when exiting search mode
   dispatch(loadingStarted());
   dispatch(backToTopHeadlines());
   setTopHeadlinesTrigger((prev) => !prev);
