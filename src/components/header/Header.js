@@ -9,7 +9,7 @@ import { handleBlur, handleChange, handleFocus, handleSubmit, handleBackButtonCl
 import { handleApiCall, config } from "../../helpers";
 import { searchedHeadlinesRecieved, backToTopHeadlines, loadingStarted } from "../../store/newsSlice";
 
-const filters = [{ value: "relevancy" }, { value: "popularity" }, { value: "publishedAt" }];
+const filters = [{ value: "relevancy" }, { value: "popularity" }, { value: "date" }];
 
 function Header({ setTopHeadlinesTrigger }) {
   // helpers
@@ -69,6 +69,7 @@ function Header({ setTopHeadlinesTrigger }) {
                 type="submit"
               />
 
+              {/* these commands are shown only if user is curently in search mode */}
               {searchedHeadlines.length > 0 && (
                 <>
                   <SlideFromLeft
@@ -84,7 +85,7 @@ function Header({ setTopHeadlinesTrigger }) {
 
                         <button
                           children={<img src={backIcon} />}
-                          className={`search-button absolute left-0 bottom-[-28px] opacity-${buttonOpacity} px-[16.5px]`}
+                          className={`search-button absolute right-0 bottom-[27px] opacity-${buttonOpacity} px-[15px]`}
                           onClick={() => handleBackButtonClick(dispatch, backToTopHeadlines, loadingStarted, setTopHeadlinesTrigger)}
                         />
                       </>
@@ -97,7 +98,7 @@ function Header({ setTopHeadlinesTrigger }) {
                       <ul className="flex absolute justify-around text-sm lg:text-base mt-1 pl-1">
                         {filters.map((filter, index) => (
                           <li
-                            className="filter cursor-pointer mr-1 lg:mr-3"
+                            className="filter cursor-pointer mr-2 lg:mr-4"
                             id={filter.value}
                             key={index + filter}
                             children={filter.value}
