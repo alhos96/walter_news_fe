@@ -26,3 +26,5 @@ After cloning repository please add your own .env file at the root folder with f
 After that run `npm install` to install all the dependencies. After completing all these steps run `npm start` script. 
 
 That runs the server part of application in the development mode on http://localhost:3000.
+
+Have fun! 
