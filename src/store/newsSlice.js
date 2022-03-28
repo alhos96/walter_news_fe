@@ -36,7 +36,7 @@ const slice = createSlice({
       news.errorMessage = "";
     },
     backToTopHeadlines: (news, data) => {
-      news.searchedHeadlines = []; // emptying searched headlines in redux store will trigger new call for top headlines
+      news.searchedHeadlines = []; // emptying searched headlines in redux will remove search controls from header
       news.errorMessage = "";
     },
   },
