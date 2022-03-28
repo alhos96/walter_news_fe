@@ -17,7 +17,7 @@ function Main({ setShowAmount }) {
 
   // functions
   const handleLoadMoreClick = () => {
-    setShowAmount((prev) => prev + 3);
+    setShowAmount((prev) => prev + 20);
   };
 
   const showCards = (data) => {
@@ -47,7 +47,7 @@ function Main({ setShowAmount }) {
         {showCards((showTopHeadlines && topHeadlines) || (showSearchedHeadlines && searchedHeadlines))}
       </div>
 
-      {showTopHeadlines && <Button handler={() => handleLoadMoreClick()} children={"Load More"} />}
+      <Button handler={() => handleLoadMoreClick()} children={"Load More"} />
     </div>
   );
 }

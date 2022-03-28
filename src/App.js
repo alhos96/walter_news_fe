@@ -16,7 +16,7 @@ function App() {
   const searchedHeadlines = useSelector((state) => state.news.searchedHeadlines);
 
   // local state
-  const [showAmount, setShowAmount] = useState(20); // amount of articles to ask for
+  const [showAmount, setShowAmount] = useState(20); // amount of articles to ask for will increase on button click
   const [topHeadlinesTrigger, setTopHeadlinesTrigger] = useState(false); // change state on back to headlines button click
 
   // sideffects
@@ -30,7 +30,7 @@ function App() {
 
   return (
     <div className="App relative">
-      <Header setTopHeadlinesTrigger={setTopHeadlinesTrigger} />
+      <Header setTopHeadlinesTrigger={setTopHeadlinesTrigger} showAmount={showAmount} />
 
       <Routes>
         <Route path="/" element={resultsLoading ? <Spinner /> : <Main showAmount={showAmount} setShowAmount={setShowAmount} />} />

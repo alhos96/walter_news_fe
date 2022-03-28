@@ -9,9 +9,14 @@ import { handleBlur, handleChange, handleFocus, handleSubmit, handleBackButtonCl
 import { handleApiCall, config } from "../../helpers";
 import { searchedHeadlinesRecieved, backToTopHeadlines, loadingStarted, recievedError } from "../../store/newsSlice";
 
-const filters = [{ value: "relevancy" }, { value: "popularity" }, { value: "date" }];
+const filters = [
+  // name is shown to user value is searched by
+  { name: "relevancy", value: "relevancy" },
+  { name: "popularity", value: "popularity" },
+  { name: "date", value: "publishedAt" },
+];
 
-function Header({ setTopHeadlinesTrigger }) {
+function Header({ setTopHeadlinesTrigger, showAmount }) {
   // helpers
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,7 +35,13 @@ function Header({ setTopHeadlinesTrigger }) {
 
   // functions
   const search = () => {
-    handleApiCall(`${endpoints.everything}?q=${userInput}&sortBy=${activeFilter}`, get, dispatch, searchedHeadlinesRecieved, recievedError);
+    handleApiCall(
+      `${endpoints.everything}?q=${userInput}&sortBy=${activeFilter}&pageSize=${showAmount}`,
+      get,
+      dispatch,
+      searchedHeadlinesRecieved,
+      recievedError
+    );
   };
 
   // side effects
@@ -41,7 +52,7 @@ function Header({ setTopHeadlinesTrigger }) {
   useEffect(() => {
     userInput && search(); // search again on filter change but prevent search on initial render when input is empty
     // eslint-disable-next-line
-  }, [activeFilter]);
+  }, [activeFilter, showAmount]);
 
   return (
     <div className="header p-5 h-80 relative">
@@ -97,7 +108,7 @@ function Header({ setTopHeadlinesTrigger }) {
                               loadingStarted,
                               setTopHeadlinesTrigger,
                               searchInput,
-                              userInput
+                              setUserInput
                             )
                           }
                         />
@@ -114,7 +125,7 @@ function Header({ setTopHeadlinesTrigger }) {
                             className="filter cursor-pointer mr-2 lg:mr-4"
                             id={filter.value}
                             key={index + filter}
-                            children={filter.value}
+                            children={filter.name}
                             onClick={(e) => setActiveFilter(e.target.id)}
                           />
                         ))}
